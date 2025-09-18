@@ -1,18 +1,23 @@
+# opens the file and reads it as string
 def get_book_text(filepath):
     with open(filepath) as f:
         file_contents = f.read()
     return file_contents
 
-def count_words(text):
-    word_list = text.split()
+# passes the output of get_book_text() and splits and stores the separated words in a list 
+# then returns the total count of words
+def count_words(book_text):
+    word_list = book_text.split()
     return len(word_list)
 
-def count_characters(text):
+# passes the output of get_book_text() and returns a dict
+# of character count. e.g. {'t': 29493, 'a': 25894}
+def count_characters(book_text):
     char_list = []
     char_dict = {}
-    word_list = text.split()
+    word_list = book_text.split()
 
-    # split words into chars, appending lowercased chars to a list
+    # iterates each word, then iterates each char, appending lowercase chars to a list
     for w in word_list:
         for c in w:
             char_list.append(c.lower())
@@ -25,15 +30,42 @@ def count_characters(text):
             char_dict[char] += 1
     return char_dict
 
+# helper function that dictates that the sort should be by "num" key
+def sort_on(items):
+    return items["num"]
+
+# passes the output of count_characters() then returns a new dictionary
+# that is sorted based by character count descending
+def sort_dict(dict):
+    dict_list = []
+
+    # loops through the dict
+    for key, value in dict.items():
+        # must create an empty dict each iteration so that it wont just update the current one
+        new_dict = {}
+        new_dict["char"] = key
+        new_dict["num"] = value
+        dict_list.append(new_dict)
+        
+    dict_list.sort(reverse=True, key=sort_on)
+    return dict_list
 '''
-problem:
+counts = {"a": 3, "b": 5, " ": 2}
 
-Add a new function to your stats.py file that takes the text from the book as a string, and returns the number of times each character, 
-(including symbols and spaces), appears in the string.
-Convert any character to lowercase using the .lower() method, we don't want duplicates.
-Use a dictionary of String -> Integer. The returned dictionary should look something like this:
-{'p': 6121, 'r': 20818, 'o': 25225, ...
+for key, value in counts.items():
+    print(key, value)
 
-Import and call the function in main.py, and capture the result in a new variable.
-After printing the word count, print the dictionary of characters and their counts.
+# A function that takes a dictionary and returns the value of the "num" key
+# This is how the `.sort()` method knows how to sort the list of dictionaries
+def sort_on(items):
+    return items["num"]
+
+vehicles = [
+    {"name": "car", "num": 7},
+    {"name": "plane", "num": 10},
+    {"name": "boat", "num": 2}
+]
+vehicles.sort(reverse=True, key=sort_on)
+print(vehicles)
+# [{'name': 'plane', 'num': 10}, {'name': 'car', 'num': 7}, {'name': 'boat', 'num': 2}]
 '''
