@@ -23,5 +23,3 @@ t: 29493
 - Frequency of each letter (case-insensitive)
 - Clean, readable summary report
 - Works with any plain text file
-
-- 
