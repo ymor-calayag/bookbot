@@ -4,7 +4,7 @@ BookBot is my first [Boot.dev](https://www.boot.dev) project! #bookbot
 A simple command-line tool that analyzes a text file (e.g., a book) and prints useful statistics like word counts and character frequencies.
 
 ## Demo
-'''
+```
 python3 main.py books/frankenstein.txt 
 
 ============ BOOKBOT ============
@@ -17,7 +17,7 @@ t: 29493
 ...
 ô: 1
 ============= END ===============
-'''
+```
 ## Features
 - Count total words in a file
 - Frequency of each letter (case-insensitive)
